@@ -19,6 +19,8 @@ type FormContextType = {
   setSelectedDomain: (domain: string) => void;
   roleAnswers: string[];
   setRoleAnswers: (answers: string[]) => void;
+  isSubmitted: boolean;
+  setIsSubmitted: (value: boolean) => void;
 };
 
 const FormContext = createContext<FormContextType | undefined>(undefined);
@@ -27,6 +29,7 @@ export function FormProvider({ children }: { children: ReactNode }) {
   const [personalInfo, setPersonalInfo] = useState<PersonalInfo | null>(null);
   const [selectedDomain, setSelectedDomain] = useState<string | null>(null);
   const [roleAnswers, setRoleAnswers] = useState<string[]>([]);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   return (
     <FormContext.Provider
@@ -37,6 +40,8 @@ export function FormProvider({ children }: { children: ReactNode }) {
         setSelectedDomain,
         roleAnswers,
         setRoleAnswers,
+        isSubmitted,
+        setIsSubmitted,
       }}
     >
       {children}
