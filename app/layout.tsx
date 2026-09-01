@@ -17,6 +17,7 @@ export const metadata: Metadata = {
   title: 'GDG MIT-WPU Recruitment Form',
   description:
     'Apply to join GDG on Campus at MIT-WPU. Fill out the recruitment form to embark on your journey.',
+  icons: { icon: '/assets/gdg-logo.png' },
 };
 
 export const viewport: Viewport = {
