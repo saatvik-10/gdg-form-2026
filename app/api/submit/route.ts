@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
+import { getServerSession } from "next-auth";
 import mongoose from "mongoose";
+import { authOptions } from "@/lib/auth";
 
 const MONGODB_URI =
   process.env.MONGODB_URI!
@@ -44,10 +46,19 @@ const Application =
 
 export async function POST(req: NextRequest) {
   try {
+    const session = await getServerSession(authOptions);
+
+    if (!session?.user?.email) {
+      return NextResponse.json(
+        { error: "Unauthorized" },
+        { status: 401 }
+      );
+    }
+
     const body = await req.json();
     console.log("[/api/submit] Incoming Payload:", body);
 
-    const required = ["name", "branch", "year", "prn", "preferredRole", "phone", "email"];
+    const required = ["name", "branch", "year", "prn", "preferredRole", "phone"];
     for (const field of required) {
       if (!body[field]) {
         return NextResponse.json(
@@ -67,7 +78,7 @@ export async function POST(req: NextRequest) {
         prn:           String(body.prn),
         preferredRole: String(body.preferredRole),
         phone:         String(body.phone),
-        email:         String(body.email),
+        email:         String(session.user.email),
         dept:          String(body.dept ?? ""),
         roleQuestion1: String(body.roleQuestion1 ?? ""),
         roleQuestion2: String(body.roleQuestion2 ?? ""),
