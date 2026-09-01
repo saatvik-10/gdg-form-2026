@@ -1,0 +1,543 @@
+.socials-page {
+  min-height: 100vh;
+  width: 100%;
+  background: #020617;
+  color: white;
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px 60px;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.socials-glow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 70% 45% at 50% 35%,
+      rgba(66, 133, 244, 0.09),
+      transparent 70%
+    );
+
+  z-index: 0;
+}
+
+.floating-shape {
+  position: fixed;
+  pointer-events: none;
+  opacity: 0.25;
+  z-index: 0;
+  animation: floating 7s ease-in-out infinite;
+}
+
+.shape-1 {
+  top: 9%;
+  left: 4%;
+}
+
+.shape-2 {
+  top: 14%;
+  right: 6%;
+  animation-delay: 1s;
+}
+
+.shape-3 {
+  bottom: 14%;
+  left: 6%;
+  animation-delay: 2s;
+}
+
+@keyframes floating {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-15px) rotate(6deg);
+  }
+}
+
+.socials-container {
+  width: 100%;
+  max-width: 760px;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.socials-header {
+  width: 100%;
+  margin-bottom: 28px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 30px;
+}
+
+.brand-logo {
+  width: 64px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.brand-text {
+  text-align: left;
+}
+
+.brand-text h2 {
+  margin: 0;
+  color: white;
+  font-size: 27px;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.5px;
+}
+
+.brand-text p {
+  margin: 5px 0 0;
+  color: #94a3b8;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 3px;
+}
+
+.stepper {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+}
+
+.step-wrapper {
+  display: flex;
+  align-items: flex-start;
+  flex: 1;
+}
+
+.step-wrapper:last-child {
+  flex: 0 0 auto;
+}
+
+.step-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 58px;
+}
+
+.step-circle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.step-circle.completed {
+  background: #4285f4;
+  color: white;
+  box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.08);
+}
+
+.step-circle.active {
+  background: #4285f4;
+  color: white;
+  box-shadow:
+    0 0 0 3px rgba(66, 133, 244, 0.18),
+    0 0 0 5px rgba(66, 133, 244, 0.05);
+}
+
+.step-label {
+  margin-top: 8px;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.active-label {
+  color: white;
+  font-weight: 600;
+}
+
+.step-line {
+  height: 2px;
+  flex: 1;
+  margin-top: 20px;
+  background: #4285f4;
+}
+
+.socials-card {
+  width: 100%;
+  background: rgba(15, 23, 42, 0.96);
+  border: 1px solid #243247;
+  border-radius: 26px;
+  padding: 48px 52px 38px;
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.45),
+    0 0 35px rgba(66, 133, 244, 0.04);
+
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.socials-card::before {
+  content: "";
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  height: 200px;
+  background: rgba(66, 133, 244, 0.07);
+  filter: blur(70px);
+  pointer-events: none;
+}
+
+.success-icon {
+  width: 78px;
+  height: 78px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(52, 168, 83, 0.08);
+  border: 1px solid rgba(52, 168, 83, 0.3);
+  color: #34a853;
+  box-shadow:
+    0 0 30px rgba(52, 168, 83, 0.12);
+}
+
+.success-icon svg {
+  width: 38px;
+  height: 38px;
+}
+
+.success-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 7px 13px;
+  margin-bottom: 18px;
+  border-radius: 999px;
+  background: rgba(52, 168, 83, 0.09);
+  border: 1px solid rgba(52, 168, 83, 0.2);
+  color: #4ade80;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.journey-title {
+  margin: 0 0 22px;
+  font-size: clamp(32px, 5vw, 48px);
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  background: linear-gradient(
+    90deg,
+    #4285f4 0%,
+    #ea4335 28%,
+    #fbbc05 55%,
+    #34a853 82%
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.journey-title span {
+  display: inline;
+}
+
+.journey-box {
+  width: 100%;
+  padding: 20px 22px;
+  margin-bottom: 22px;
+  border-radius: 17px;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(30, 58, 138, 0.3),
+      rgba(15, 23, 42, 0.8),
+      rgba(6, 78, 59, 0.28)
+    );
+
+  border: 1px solid rgba(51, 65, 85, 0.8);
+}
+
+.journey-box h2 {
+  margin: 0;
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.journey-box p {
+  margin: 7px 0 0;
+  color: #94a3b8;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.social-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.social-button {
+  width: 100%;
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  padding: 12px 20px;
+  border-radius: 13px;
+  color: white;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 650;
+  transition:
+    transform 0.18s ease,
+    filter 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.social-button svg {
+  width: 21px;
+  height: 21px;
+  flex-shrink: 0;
+}
+
+.social-button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+}
+
+.social-button:active {
+  transform: scale(0.98);
+}
+
+.instagram-button {
+  background:
+    linear-gradient(
+      135deg,
+      #833ab4 0%,
+      #e1306c 45%,
+      #fd1d1d 72%,
+      #fcb045 100%
+    );
+
+  box-shadow:
+    0 7px 22px rgba(253, 29, 29, 0.2);
+}
+
+.whatsapp-button {
+  background:
+    linear-gradient(
+      135deg,
+      #075e54 0%,
+      #128c7e 45%,
+      #25d366 100%
+    );
+
+  border: 1px solid rgba(37, 211, 102, 0.25);
+  box-shadow:
+    0 7px 22px rgba(37, 211, 102, 0.18);
+}
+
+.footer-text {
+  margin: 20px 0 0;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+@media (max-width: 700px) {
+  .socials-page {
+    padding: 28px 16px 40px;
+  }
+
+  .socials-container {
+    max-width: 560px;
+  }
+
+  .socials-card {
+    padding: 38px 28px 30px;
+  }
+
+  .brand-text h2 {
+    font-size: 24px;
+  }
+
+  .journey-title {
+    font-size: 38px;
+  }
+}
+
+@media (max-width: 520px) {
+  .socials-page {
+    padding: 22px 12px 32px;
+    align-items: flex-start;
+  }
+
+  .socials-header {
+    margin-bottom: 20px;
+  }
+
+  .brand {
+    gap: 10px;
+
+    margin-bottom: 24px;
+  }
+
+  .brand-logo {
+    width: 52px;
+    height: 40px;
+  }
+
+  .brand-text h2 {
+    font-size: 21px;
+  }
+
+  .brand-text p {
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+
+  .stepper {
+    width: 100%;
+  }
+
+  .step-item {
+    min-width: 42px;
+  }
+
+  .step-circle {
+    width: 34px;
+    height: 34px;
+    font-size: 12px;
+  }
+
+  .step-line {
+    margin-top: 16px;
+  }
+
+  .step-label {
+    margin-top: 6px;
+    font-size: 10px;
+  }
+
+  .socials-card {
+    border-radius: 21px;
+    padding: 30px 18px 25px;
+  }
+
+  .success-icon {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 14px;
+  }
+
+  .success-icon svg {
+    width: 31px;
+    height: 31px;
+  }
+
+  .success-badge {
+    font-size: 10px;
+    padding: 6px 10px;
+    margin-bottom: 15px;
+  }
+
+  .journey-title {
+    font-size: 32px;
+    letter-spacing: -1px;
+    margin-bottom: 18px;
+  }
+
+  .journey-box {
+    padding: 16px 14px;
+    margin-bottom: 17px;
+  }
+
+  .journey-box h2 {
+    font-size: 17px;
+  }
+
+  .journey-box p {
+    font-size: 12px;
+  }
+
+  .social-buttons {
+    gap: 10px;
+  }
+
+  .social-button {
+    min-height: 52px;
+    padding: 10px 12px;
+    font-size: 12px;
+    gap: 8px;
+  }
+
+  .social-button svg {
+    width: 19px;
+    height: 19px;
+  }
+
+  .footer-text {
+    margin-top: 17px;
+    font-size: 10px;
+  }
+
+  .floating-shape {
+    opacity: 0.12;
+  }
+}
+
+@media (max-width: 360px) {
+  .socials-page {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .socials-card {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .brand-text h2 {
+    font-size: 19px;
+  }
+
+  .brand-text p {
+    font-size: 8px;
+  }
+
+  .journey-title {
+    font-size: 28px;
+  }
+
+  .social-button {
+    font-size: 11px;
+  }
+}
