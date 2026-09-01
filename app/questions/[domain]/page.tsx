@@ -2,6 +2,7 @@
 
 import { useParams, useRouter } from "next/navigation";
 import { useFormContext } from "@/context/FormContext";
+import { useStepGuard } from "@/lib/useStepGuard";
 import { QUESTIONS, EXAMPLES } from "@/data/questions";
 import { useState } from "react";
 import { answersSchema } from "@/validators/questions";
@@ -22,7 +23,10 @@ export default function DomainQuestionsPage() {
     personalInfo,
     setSelectedDomain,
     setRoleAnswers,
+    setIsSubmitted,
   } = useFormContext();
+
+  const ready = useStepGuard(!!personalInfo, "/registration");
 
   const questions = QUESTIONS[domain] ?? [];
   const examples = EXAMPLES[domain] ?? [];
@@ -51,7 +55,7 @@ export default function DomainQuestionsPage() {
     e.preventDefault();
 
     if (!personalInfo) {
-      router.push("/registration");
+      router.replace("/registration");
       return;
     }
 
@@ -83,7 +87,6 @@ export default function DomainQuestionsPage() {
       prn: personalInfo.prn,
       preferredRole: domain,
       phone: personalInfo.phone,
-      email: personalInfo.email,
       dept: personalInfo.dept,
 
       roleQuestion1: result.data[0] ?? "",
@@ -109,7 +112,8 @@ export default function DomainQuestionsPage() {
         );
       }
 
-      router.push("/socials");
+      setIsSubmitted(true);
+      router.replace("/socials");
     } catch (err: unknown) {
       console.error("Submission error:", err);
 
@@ -126,6 +130,8 @@ export default function DomainQuestionsPage() {
   const answeredCount = answers.filter(
     (a) => a.trim().length > 0
   ).length;
+
+  if (!ready) return null;
 
   return (
     <main className="questions-page">

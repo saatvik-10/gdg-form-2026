@@ -1,6 +1,8 @@
 'use client';
 
 import Image from 'next/image';
+import { useFormContext } from '@/context/FormContext';
+import { useStepGuard } from '@/lib/useStepGuard';
 import './socials.css';
 
 const GOOGLE_BLUE = '#4285F4';
@@ -11,6 +13,10 @@ const GOOGLE_GREEN = '#34A853';
 const STEPS = ['Details', 'Domain', 'Questions', 'Embarked'];
 
 export default function EmbarkedPage() {
+  const { isSubmitted } = useFormContext();
+  const ready = useStepGuard(isSubmitted, '/registration');
+  if (!ready) return null;
+
   return (
     <main className='socials-page'>
       <div className='socials-glow' />

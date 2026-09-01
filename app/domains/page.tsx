@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useFormContext } from "@/context/FormContext";
+import { useStepGuard } from "@/lib/useStepGuard";
 import { QUESTIONS, DOMAIN_LABELS } from "@/data/questions";
 import StepHeader from "@/components/StepHeader";
 
@@ -16,13 +17,11 @@ export default function DomainsPage() {
   const router = useRouter();
   const { personalInfo } = useFormContext();
 
-  const handleSelect = (key: string) => {
-    if (!personalInfo) {
-      router.push("/");
-      return;
-    }
+  const ready = useStepGuard(!!personalInfo, "/registration");
+  if (!ready) return null;
 
-    router.push(`/questions/${key}`);
+  const handleSelect = (key: string) => {
+    router.replace(`/questions/${key}`);
   };
 
   const domainKeys = Object.keys(QUESTIONS);
