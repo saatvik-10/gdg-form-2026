@@ -4,7 +4,6 @@ export const QUESTIONS: Record<string, string[]> = {
     "What fields are you interested in tech?",
     "What fields have you already explored?",
     "Describe a technical problem you faced while working on a project and how you solved it.",
-    "What is your opinion on AI Slop?",
   ],
 
   pr: [
@@ -12,7 +11,6 @@ export const QUESTIONS: Record<string, string[]> = {
     "Describe yourself in three words and explain why you chose them.",
     "How do you handle it when you ask for help or a favor and get a \"no\"?",
     "On a scale of 1–10, how comfortable are you speaking in front of a crowd, and why?",
-    "Pitch your favorite hobby or movie to someone who has never heard of it.",
   ],
 
   management: [
@@ -20,7 +18,6 @@ export const QUESTIONS: Record<string, string[]> = {
     "Tell us about a time when you took responsibility for organizing, coordinating, or leading something. What was your role and what was the outcome?",
     "How would you prioritize the following if they all required your attention at the same time?\n\n- An event task with a deadline in 1 hour\n- A team member asking for help\n- A last-minute request from another department\n- A task assigned to you for next week",
     "How do you handle conflicts or disagreements between team members while ensuring that the work is not affected?",
-    "What type of personality or work style do you find most challenging to work with, and how do you adapt your own approach to ensure the goal gets met?",
   ],
 
   marketing: [
@@ -28,7 +25,6 @@ export const QUESTIONS: Record<string, string[]> = {
     "A reel you spent hours making gets 800 views, while a simple 10-second reel made in 20 minutes gets 15,000 views. What would you do after seeing this result?",
     "You are given ₹2,000 and 5 days to promote a college event. You cannot spend the whole amount on Instagram ads. How would you use the money?",
     "Someone suggests a marketing idea you don’t like, but most of the team thinks it could work. How would you handle the situation?",
-    "Imagine the event is tomorrow, there is almost no budget, and only 5 people are available from the marketing team. What is one realistic idea you would execute today to get students talking about it?",
   ],
 
   media: [
@@ -36,7 +32,6 @@ export const QUESTIONS: Record<string, string[]> = {
     "Rate your current skill level in media and content creation from 0 to 10.",
     "Apart from visual media, what other content skills do you have? (e.g., content writing, script writing, copywriting, storytelling, captions, photography, videography, etc.)",
     "If you were covering a GDG event, how would you capture its energy and turn it into engaging content that makes people want to be part of the next event?",
-    "Show us what you can create by sharing links to your portfolio or previous work. This can include reels, video edits, photography, social media content, written content, or any other creative work. Also, mention any additional skills you bring to the media team!"
   ],
 
   design: [
@@ -44,7 +39,6 @@ export const QUESTIONS: Record<string, string[]> = {
     "What design tools are you familiar with?",
     "What is one designer/brand whose visual style you really like? Why?",
     "If you had to design a poster for a GDG event, what style, colors, and layout would you choose and why?",
-    "Share links to your portfolio or any design work you’ve created before. Mention any tools or skills you use regularly."
   ]
 };
 
