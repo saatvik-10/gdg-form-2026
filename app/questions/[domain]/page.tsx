@@ -219,7 +219,6 @@ export default function DomainQuestionsPage() {
               ) : (
                 <>
                   <span>Submit Application</span>
-                  <span>→</span>
                 </>
               )}
             </button>

@@ -50,7 +50,6 @@ export default function Hero() {
           disabled={isAnimating}
         >
           <span>PROCEED</span>
-          <span className="button-arrow">→</span>
         </button>
       </motion.section>
 
