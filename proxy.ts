@@ -15,6 +15,15 @@ export async function proxy(request: NextRequest) {
     return NextResponse.redirect(new URL('/registration-closed', request.url));
   }
 
+  const token = await getToken({
+    req: request,
+    secret: process.env.AUTH_SECRET,
+  });
+
+  if (pathname === '/login' && token) {
+    return NextResponse.redirect(new URL('/registration', request.url));
+  }
+
   const isPublic = PUBLIC_PATHS.some(
     (path) => pathname === path || pathname.startsWith(`${path}/`),
   );
@@ -22,11 +31,6 @@ export async function proxy(request: NextRequest) {
   if (isPublic) {
     return NextResponse.next();
   }
-
-  const token = await getToken({
-    req: request,
-    secret: process.env.AUTH_SECRET,
-  });
 
   if (!token) {
     const url = new URL('/login', request.url);

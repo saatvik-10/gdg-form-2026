@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useFormContext } from "@/context/FormContext";
 
 export function useStepGuard(
   condition: boolean,
@@ -9,14 +10,17 @@ export function useStepGuard(
 ): boolean {
   const router = useRouter();
   const [ready, setReady] = useState(false);
+  const { isLoaded } = useFormContext();
 
   useEffect(() => {
+    if (!isLoaded) return;
+
     if (!condition) {
       router.replace(redirectTo);
     } else {
       setReady(true);
     }
-  }, [condition, redirectTo, router]);
+  }, [condition, redirectTo, router, isLoaded]);
 
   return ready;
 }

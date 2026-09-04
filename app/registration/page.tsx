@@ -1,12 +1,11 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useFormContext } from '@/context/FormContext';
 import StepHeader from '@/components/StepHeader';
 import { personalDetailsSchema } from '@/validators/personalDetails';
-import './registration.css';
 
 const FIELDS = [
   {
@@ -53,7 +52,7 @@ const GOOGLE_RED = '#EA4335';
 
 export default function PersonalDetailsPage() {
   const router = useRouter();
-  const { setPersonalInfo } = useFormContext();
+  const { personalInfo, setPersonalInfo, isLoaded } = useFormContext();
   const { data: session } = useSession();
 
   const [form, setForm] = useState({
@@ -64,6 +63,20 @@ export default function PersonalDetailsPage() {
     branch: '',
     dept: '',
   });
+
+  // Pre-fill the form if they already have data in sessionStorage
+  useEffect(() => {
+    if (personalInfo) {
+      setForm({
+        name: personalInfo.name || '',
+        phone: personalInfo.phone || '',
+        prn: personalInfo.prn || '',
+        year: personalInfo.year || '',
+        branch: personalInfo.branch || '',
+        dept: personalInfo.dept || '',
+      });
+    }
+  }, [personalInfo]);
 
   const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -105,17 +118,19 @@ export default function PersonalDetailsPage() {
   };
 
   return (
-    <main className='registration-page'>
-      <div className='registration-container'>
+    <main className='h-[100dvh] md:h-auto md:min-h-[100dvh] relative flex flex-col items-center p-4 pt-6 md:p-16'>
+      <div className='flex flex-col items-center bg-neutral-900 p-6 py-8 rounded-xl md:w-[90%] max-w-[500px] w-full min-h-[400px] h-fit max-h-full overflow-y-auto md:overflow-y-visible gap-6'>
         <StepHeader currentStep={1} />
 
-        <section className='registration-card'>
-          <div className='registration-heading'>
-            <p className='registration-step'>Step 1 of 3</p>
+        <section className='flex flex-col items-center justify-center w-full gap-4'>
+          <div className='flex flex-col items-center justify-center text-center'>
+            <p className='text-sm text-neutral-400'>
+              Step 1 of 3
+            </p>
 
             <h1>Let&apos;s get your details</h1>
 
-            <p className='registration-description'>
+            <p className='text-sm text-neutral-400'>
               We&apos;ll use this to reach out after your application.
             </p>
           </div>
@@ -123,16 +138,19 @@ export default function PersonalDetailsPage() {
           <form
             onSubmit={handleSubmit}
             noValidate
-            className='registration-form'
+            className='flex flex-col justify-center w-full gap-4'
           >
             {FIELDS.map((field) => (
-              <div className='form-field' key={field.key}>
-                <label htmlFor={field.key}>{field.label}</label>
+              <div className='flex flex-col gap-1' key={field.key}>
+                <label htmlFor={field.key} className="text-sm text-neutral-400">
+                  {field.label}
+                </label>
 
                 {field.type === 'select' ? (
                   <select
                     id={field.key}
                     value={form[field.key]}
+                    className="bg-neutral-800 text-neutral-100 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     onChange={(e) =>
                       setForm((prev) => ({
                         ...prev,
@@ -140,12 +158,12 @@ export default function PersonalDetailsPage() {
                       }))
                     }
                   >
-                    <option value='' disabled>
+                    <option value='' disabled className="bg-neutral-800 text-neutral-100">
                       {field.placeholder}
                     </option>
 
                     {field.options.map((option) => (
-                      <option key={option} value={option}>
+                      <option key={option} value={option} className="bg-neutral-800 text-neutral-100">
                         {option}
                       </option>
                     ))}
@@ -157,6 +175,7 @@ export default function PersonalDetailsPage() {
                     inputMode={field.key === 'prn' ? 'numeric' : undefined}
                     placeholder={field.placeholder}
                     value={form[field.key]}
+                    className="bg-neutral-800 text-neutral-100 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     onChange={(e) => {
                       if (field.key === 'prn') {
                         handlePrnChange(e.target.value);
@@ -180,8 +199,7 @@ export default function PersonalDetailsPage() {
 
             <button
               type='submit'
-              className='continue-button'
-              style={{ backgroundColor: GOOGLE_BLUE }}
+              className='mt-4 px-4 py-2 rounded-md text-neutral-900 bg-neutral-100 font-medium hover:opacity-90 transition-opacity'
             >
               Continue
             </button>

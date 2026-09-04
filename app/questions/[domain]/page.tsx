@@ -134,62 +134,40 @@ export default function DomainQuestionsPage() {
   if (!ready) return null;
 
   return (
-    <main className="questions-page">
-      <div className="questions-wrapper">
-        <div className="questions-step-header">
-          <StepHeader currentStep={3} />
-        </div>
+    <main className='h-[100dvh] md:h-auto md:min-h-[100dvh] relative flex flex-col items-center p-4 pt-6 md:p-16'>
+      <div className='flex flex-col items-center bg-neutral-900 p-6 py-8 rounded-xl md:w-[90%] max-w-[500px] w-full min-h-[400px] h-fit max-h-full overflow-y-auto md:overflow-y-visible gap-6'>
+        <StepHeader currentStep={3} />
 
-        <section className="questions-panel">
-          <div className="questions-heading">
-            <div className="questions-heading-top">
-              <div>
-                <p className="questions-step">STEP 3 OF 3</p>
+        <section className='flex flex-col items-center justify-center w-full gap-4'>
+          <div className='flex flex-col items-center justify-center text-center'>
+            <p className='text-sm text-neutral-400'>
+              Step 3 of 3
+            </p>
 
-                <h1 className="capitalize">
-                  {domain} Questions
-                </h1>
-              </div>
+            <h1 className="capitalize">{domain} Questions</h1>
 
-              <div className="questions-progress">
-                <span>{answeredCount}</span>
-
-                <span className="questions-progress-total">
-                  /{questions.length}
-                </span>
-
-                <small>answered</small>
-              </div>
-            </div>
+            <p className='text-sm text-neutral-400'>
+              Answer {answeredCount} / {questions.length} questions.
+            </p>
           </div>
 
           <form
             onSubmit={handleSubmit}
             noValidate
-            className="questions-form"
+            className='flex flex-col justify-center w-full gap-4'
           >
             {questions.map((q, i) => {
               const color = PALETTE[i % PALETTE.length];
 
               return (
-                <div
-                  key={i}
-                  className={`question-block ${
-                    errors[i] ? "question-error" : ""
-                  }`}
-                >
-                  <label className="question-label">
+                <div className='flex flex-col gap-1' key={i}>
+                  <label className="text-md text-neutral-200 font-medium">
                     <span
-                      className="question-number"
-                      style={{
-                        backgroundColor: `${color}18`,
-                        color,
-                      }}
+                      style={{ color }}
                     >
-                      {i + 1}
+                      Q{i + 1}.{" "}
                     </span>
-
-                    <span>{q}</span>
+                    {q}
                   </label>
 
                   <textarea
@@ -200,34 +178,28 @@ export default function DomainQuestionsPage() {
                     onChange={(e) =>
                       handleAnswerChange(i, e.target.value)
                     }
-                    className="question-textarea"
+                    className="bg-neutral-800 text-neutral-100 rounded-md px-4 py-2 focus:outline-none focus:ring-2 mt-1 resize-none placeholder:text-neutral-500"
                     onFocus={(e) => {
+                      e.currentTarget.style.outlineColor = color;
                       e.currentTarget.style.borderColor = color;
                     }}
                     onBlur={(e) => {
-                      e.currentTarget.style.borderColor = "#273449";
+                      e.currentTarget.style.outlineColor = 'transparent';
                     }}
                   />
 
-                  <div className="question-footer">
-                    {errors[i] ? (
-                      <p
-                        className="question-error-text"
-                        style={{ color: GOOGLE_RED }}
-                      >
-                        {errors[i]}
-                      </p>
-                    ) : (
-                      <span />
-                    )}
-                  </div>
+                  {errors[i] && (
+                    <p className='form-error text-sm' style={{ color: GOOGLE_RED }}>
+                      {errors[i]}
+                    </p>
+                  )}
                 </div>
               );
             })}
 
             {error && (
               <p
-                className="text-sm rounded-xl bg-red-950/80 border border-red-800 px-4 py-3"
+                className="text-sm rounded-md bg-red-950/80 border border-red-800 px-4 py-3"
                 style={{ color: GOOGLE_RED }}
               >
                 ⚠ {error}
@@ -237,7 +209,7 @@ export default function DomainQuestionsPage() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="questions-submit"
+              className='mt-4 px-4 py-2 rounded-md text-neutral-900 bg-neutral-100 font-medium hover:opacity-90 transition-opacity flex justify-center items-center gap-2'
               style={{
                 opacity: isSubmitting ? 0.6 : 1,
               }}
@@ -247,7 +219,7 @@ export default function DomainQuestionsPage() {
               ) : (
                 <>
                   <span>Submit Application</span>
-                  <span className="submit-arrow">→</span>
+                  <span>→</span>
                 </>
               )}
             </button>
