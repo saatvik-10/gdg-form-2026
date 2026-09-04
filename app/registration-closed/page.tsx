@@ -2,7 +2,7 @@
 
 export default function RegistrationClosed() {
   return (
-    <main className='h-[100dvh] md:h-auto md:min-h-[100dvh] relative flex flex-col items-center p-4 pt-6 md:p-16'>
+    <main className='h-[100dvh] md:h-auto md:min-h-[100dvh] relative flex flex-col items-center p-4 pt-6 md:p-16 justify-center'>
       <div className='flex flex-col items-center justify-center bg-neutral-900 p-6 py-8 rounded-xl md:w-[90%] max-w-[500px] w-full min-h-[400px] h-fit max-h-full overflow-y-auto md:overflow-y-visible gap-6'>
         <div className="flex flex-col items-center justify-center flex-grow w-full text-center gap-6 mt-8">
           <div className="flex items-center justify-center bg-white p-4 rounded-full mb-2">

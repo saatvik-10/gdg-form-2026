@@ -46,10 +46,10 @@ export default function Hero() {
 
         <button
           onClick={handleLetsGo}
-          className="mt-8 flex items-center gap-2 justify-center rounded-full py-4 w-full bg-neutral-100 text-neutral-900 text-md font-bold hover:bg-neutral-200 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+          className="mt-8 flex items-center gapFsubmit-2 justify-center rounded-full py-4 w-full bg-neutral-100 text-neutral-900 text-md font-bold hover:bg-neutral-200 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
           disabled={isAnimating}
         >
-          <span>LET&apos;S GOO</span>
+          <span>PROCEED</span>
           <span className="button-arrow">→</span>
         </button>
       </motion.section>
