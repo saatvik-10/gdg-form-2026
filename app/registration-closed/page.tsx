@@ -1,3 +1,5 @@
+"use client";
+
 export default function RegistrationClosed() {
   return (
     <main className='h-[100dvh] md:h-auto md:min-h-[100dvh] relative flex flex-col items-center p-4 pt-6 md:p-16'>
