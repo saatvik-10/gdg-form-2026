@@ -10,11 +10,11 @@ export default function BracketTransition({
   isAnimating,
 }: BracketTransitionProps) {
   return (
-    <div className="brackets">
+    <div className="flex items-center justify-center gap-1 mb-4">
       <motion.img
         src="/assets/gdg-l.png"
         alt="Left angular bracket"
-        className="bracket-image bracket-image-left"
+        className="w-[50px]"
         animate={
           isAnimating ? { x: "-60vw", opacity: 0,} : {x: 0, opacity: 1,}
         }
@@ -26,7 +26,7 @@ export default function BracketTransition({
       <motion.img
         src="/assets/gdg-r.png"
         alt="Right angular bracket"
-        className="bracket-image bracket-image-right"
+        className="w-[50px]"
         animate={
           isAnimating
             ? {x: "60vw", opacity: 0,} : {x: 0, opacity: 1,}

@@ -18,19 +18,10 @@ export default function Hero() {
   };
 
   return (
-    <main className="hero">
-      <div className="grid-background" />
-      <div className="stars" />
-      <div className="glow glow-blue" />
-      <div className="glow glow-green" />
-      <div className="center-glow" />
-      <div className="orbit orbit-1" />
-      <div className="orbit orbit-2" />
-      <div className="orbit orbit-3" />
-      <div className="orbit orbit-4" />
+    <main className="h-[100dvh] relative overflow-hidden flex flex-col items-center justify-center">
 
       <motion.section
-        className="hero-content"
+        className="flex flex-col items-center justify-center"
         initial={{ opacity: 0, y: 20 }}
         animate={{
           opacity: isAnimating ? 0 : 1,
@@ -43,16 +34,11 @@ export default function Hero() {
           <BracketTransition isAnimating={isAnimating} />
         </div>
 
-        <h1>
-          <span>GDG</span>
+        <h1 className="text-4xl font-medium tracking-tight text-center">
+          GDG MIT-WPU
         </h1>
-        <h1>MIT-WPU</h1>
 
-        <p className="hero-description">
-          Connect. Learn. Grow.
-        </p>
-
-        <p className="hero-subtitle">
+        <p className="text-md text-center text-neutral-400 mt-2 leading-none">
           Join a community of developers
           <br className="desktop-break" />
           and enthusiasts.
@@ -60,7 +46,7 @@ export default function Hero() {
 
         <button
           onClick={handleLetsGo}
-          className="lets-go-button"
+          className="mt-8 flex items-center gap-2 justify-center rounded-full py-4 w-full bg-neutral-100 text-neutral-900 text-md font-bold hover:bg-neutral-200 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
           disabled={isAnimating}
         >
           <span>LET&apos;S GOO</span>

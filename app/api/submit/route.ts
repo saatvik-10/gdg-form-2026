@@ -40,6 +40,8 @@ const ApplicationSchema = new mongoose.Schema(
   { timestamps: true, strict: false }
 );
 
+ApplicationSchema.index({ email: 1, preferredRole: 1 }, { unique: true });
+
 const Application =
   mongoose.models.Application ||
   mongoose.model("Application", ApplicationSchema);
@@ -70,6 +72,18 @@ export async function POST(req: NextRequest) {
 
     try {
       await connectDB();
+
+      const existingApplication = await Application.findOne({
+        email: session.user.email,
+        preferredRole: String(body.preferredRole),
+      });
+
+      if (existingApplication) {
+        return NextResponse.json(
+          { error: `You have already submitted an application for the ${body.preferredRole} department.` },
+          { status: 409 }
+        );
+      }
 
       const docData = {
         name:          String(body.name),

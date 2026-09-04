@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { useFormContext } from '@/context/FormContext';
 import { useStepGuard } from '@/lib/useStepGuard';
@@ -13,84 +14,32 @@ const GOOGLE_GREEN = '#34A853';
 const STEPS = ['Details', 'Domain', 'Questions', 'Embarked'];
 
 export default function EmbarkedPage() {
-  const { isSubmitted } = useFormContext();
+  const router = useRouter();
+  const { isSubmitted, setIsSubmitted, setSelectedDomain, setRoleAnswers } = useFormContext();
   const ready = useStepGuard(isSubmitted, '/registration');
+  
   if (!ready) return null;
 
+  const handleAnotherDepartment = () => {
+    setIsSubmitted(false);
+    setSelectedDomain('');
+    setRoleAnswers([]);
+    router.push('/domains');
+  };
+
   return (
-    <main className='socials-page'>
-      <div className='socials-glow' />
-
-      <div className='floating-shape shape-1'>
-        <Image src='/assets/google-flower.svg' alt='' width={42} height={42} />
-      </div>
-
-      <div className='floating-shape shape-2'>
-        <Image src='/assets/google-spark.svg' alt='' width={34} height={34} />
-      </div>
-
-      <div className='floating-shape shape-3'>
-        <Image src='/assets/google-ring.svg' alt='' width={48} height={48} />
-      </div>
-
-      <div className='socials-container'>
-        <header className='socials-header'>
-          <div className='brand'>
-            <Image
-              src='/assets/logo.png'
-              alt='GDG MIT-WPU'
-              width={64}
-              height={48}
-              className='brand-logo'
-              priority
-            />
-
-            <div className='brand-text'>
-              <h2>GDG MIT-WPU</h2>
-              <p>RECRUITMENT FORM</p>
-            </div>
-          </div>
-
-          <div className='stepper'>
-            {STEPS.map((step, index) => {
-              const stepNumber = index + 1;
-
-              return (
-                <div className='step-wrapper' key={step}>
-                  <div className='step-item'>
-                    <div
-                      className={`step-circle ${
-                        stepNumber === 4 ? 'active' : 'completed'
-                      }`}
-                    >
-                      {stepNumber === 4 ? '4' : '✓'}
-                    </div>
-
-                    <span
-                      className={
-                        stepNumber === 4
-                          ? 'step-label active-label'
-                          : 'step-label'
-                      }
-                    >
-                      {step}
-                    </span>
-                  </div>
-
-                  {index < STEPS.length - 1 && <div className='step-line' />}
-                </div>
-              );
-            })}
-          </div>
-        </header>
-
-        <section className='socials-card'>
-          <div className='success-icon'>
+    <main className='h-[100dvh] md:h-auto md:min-h-[100dvh] relative flex flex-col items-center justify-center p-4 pt-6 md:p-16'>
+      <div className='flex flex-col items-center bg-neutral-900 p-6 py-8 rounded-xl md:w-[90%] max-w-[500px] w-full min-h-[400px] h-fit max-h-full overflow-y-auto md:overflow-y-visible gap-6'>
+        
+        <section className='flex flex-col items-center justify-center w-full h-full gap-4 mt-8 flex-grow'>
+          
+          <div className='flex items-center justify-center w-16 h-16 bg-green-500/10 text-green-500 rounded-full mb-2'>
             <svg
               viewBox='0 0 24 24'
               fill='none'
               stroke='currentColor'
               strokeWidth='3'
+              className='w-8 h-8'
             >
               <path
                 strokeLinecap='round'
@@ -100,18 +49,28 @@ export default function EmbarkedPage() {
             </svg>
           </div>
 
-          <div className='success-badge'>
-            <span>🎉</span>
-            <span>Congratulations · Form Submitted</span>
+          <div className='flex flex-col items-center justify-center text-center gap-2'>
+            <div className='flex items-center gap-2 text-sm text-neutral-400 bg-neutral-800 px-3 py-1 rounded-full'>
+              <span>🎉</span>
+              <span>Congratulations · Form Submitted</span>
+            </div>
+
+            <h1 className='text-2xl font-bold mt-4'>Connect. Learn. Grow.</h1>
+
+            <p className='text-sm text-neutral-400 max-w-[250px] leading-tight text-center'>
+              We&apos;ll review your application and reach out soon!
+            </p>
           </div>
+          
+          <button 
+            onClick={handleAnotherDepartment}
+            className="mt-6 px-6 py-3 rounded-full bg-neutral-800 text-sm font-medium text-neutral-300 hover:bg-neutral-800 transition-colors"
+          >
+            Submit for another department
+          </button>
 
-          <div className='journey-box'>
-            <h2>Connect, Learn, Grow</h2>
-
-            <p>We&apos;ll review your application and reach out soon!</p>
-          </div>
-
-          <p className='footer-text'>GDG on Campus · MIT-WPU</p>
+          <Image src="/assets/gdg-logo.png" alt="GDG logo" width={72} height={54} className="object-contain mt-auto pt-8" priority />
+          <p className='text-xs text-neutral-500'>on Campus MIT-WPU</p>
         </section>
       </div>
     </main>

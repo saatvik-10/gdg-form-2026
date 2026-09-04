@@ -1,15 +1,10 @@
 import type { Metadata, Viewport } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Google_Sans } from 'next/font/google';
 import './globals.css';
 import Providers from '@/components/providers';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const googleSans = Google_Sans({
+  variable: '--font-google-sans',
   subsets: ['latin'],
 });
 
@@ -36,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang='en' className='h-full antialiased'>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} min-h-full flex flex-col bg-slate-950`}
+        className={`${googleSans.variable} min-h-full flex flex-col bg-slate-950`}
       >
         <Providers>{children}</Providers>
       </body>
