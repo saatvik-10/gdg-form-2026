@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { getToken } from 'next-auth/jwt';
 
-const REGISTRATION_DEADLINE = new Date('2026-09-15T23:59:59+05:30');
+const REGISTRATION_DEADLINE = new Date('2026-09-18T23:59:59+05:30');
 
 const PUBLIC_PATHS = ['/', '/login', '/api/auth'];
 
