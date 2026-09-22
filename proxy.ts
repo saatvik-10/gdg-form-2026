@@ -32,11 +32,11 @@ export async function proxy(request: NextRequest) {
     return NextResponse.next();
   }
 
-  if (!token) {
-    const url = new URL('/login', request.url);
-    url.searchParams.set('callbackUrl', pathname);
-    return NextResponse.redirect(url);
-  }
+  // if (!token) {
+  //   const url = new URL('/login', request.url);
+  //   url.searchParams.set('callbackUrl', pathname);
+  //   return NextResponse.redirect(url);
+  // }
 
   return NextResponse.next();
 }
